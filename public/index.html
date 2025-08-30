@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fake News Explorer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  
+  <aside class="sidebar">
+    <h2 class="logo">Fake News Explorer</h2>
+    <nav>
+      <ul>
+        <li><a href="#" data-page="home">Home</a></li>
+        <li><a href="#" data-page="sections">Sections</a></li>
+        <li><a href="#" data-page="contact">Contact Us</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  
+  <main id="content">
+    
+    <section id="home" class="page active">
+      <h1>الصفحة الرئيسية</h1>
+      
+      
+      <div class="check-section">
+        <h2>تحقق من الخبر</h2>
+        <textarea id="newsText" placeholder="انسخ نص الخبر هنا"></textarea>
+        <input id="newsUrl" placeholder="أو ضع رابط الخبر (اختياري)">
+        <button id="checkBtn">Check</button>
+        <div id="resultCard" class="card" style="display:none"></div>
+      </div>
+
+    
+      <div class="sections-grid">
+        <div class="section-box" data-section="1">قسم 1</div>
+        <div class="section-box" data-section="2">قسم 2</div>
+        <div class="section-box" data-section="3">قسم 3</div>
+        <div class="section-box" data-section="4">قسم 4</div>
+        <div class="section-box" data-section="5">قسم 5</div>
+        <div class="section-box" data-section="6">قسم 6</div>
+      </div>
+    </section>
+
+    
+    <section id="sections" class="page">
+      <h1>الأقسام</h1>
+      <p>اختر أي قسم لعرض تفاصيله.</p>
+      <div class="sections-grid">
+        <div class="section-box" data-section="1">قسم 1</div>
+        <div class="section-box" data-section="2">قسم 2</div>
+        <div class="section-box" data-section="3">قسم 3</div>
+        <div class="section-box" data-section="4">قسم 4</div>
+        <div class="section-box" data-section="5">قسم 5</div>
+        <div class="section-box" data-section="6">قسم 6</div>
+      </div>
+    </section>
+
+    
+    <section id="contact" class="page">
+      <h1>تواصل معنا</h1>
+      <p>الإيميل: info@example.com</p>
+      <p>الهاتف: 00962-123456789</p>
+    </section>
+
+    
+    <section id="single-section" class="page">
+      <h1 id="sectionTitle">عنوان القسم</h1>
+      <p>هنا محتوى القسم المختار.</p>
+    </section>
+
+  </main>
+
+  <script src="app.JS"></script>
+</body>
+</html>
