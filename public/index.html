@@ -7,8 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --nav-bg: #2d4a63; /* dark blue */
-      --accent: #3b82bd; /* soft blue */
+      --nav-bg: #2d4a63; 
+      --accent: #3b82bd; 
       --muted: #6b7280;
       --card-bg: #f8fafc;
       --container: 1100px;
@@ -59,7 +59,7 @@
     }
     .nav a:hover{ background: rgba(255,255,255,0.04) }
 
-    /* HERO LAYOUT */
+   
     .hero{
       max-width: var(--container);
       margin: 36px auto;
@@ -70,7 +70,7 @@
       align-items:center;
     }
 
-    /* left content */
+    
     .hero-left h1{
       margin:0 0 12px 0;
       font-size:40px;
@@ -82,7 +82,7 @@
       font-size:16px;
     }
 
-    /* search bar */
+    
     .search-row{
       display:flex;
       gap:12px;
@@ -122,7 +122,7 @@
     .how h3{ margin:0 0 8px 0; font-size:18px }
     .how p{ margin:0; color:var(--muted); line-height:1.5 }
 
-    /* right card (illustration) */
+   
     .monitor-card{
       background: linear-gradient(180deg,#f7fbff,#ffffff);
       padding:20px;
@@ -172,7 +172,7 @@
       display:block;
     }
 
-    /* responsive */
+   
     @media (max-width:980px){
       .hero{ grid-template-columns: 1fr; padding:20px }
       .monitor-card{ order:-1 }
@@ -196,7 +196,7 @@
   </header>
 
   <main class="hero" id="home">
-    <!-- left -->
+    
     <section class="hero-left">
       <h1>FAKE NEWS EXPLORER</h1>
       <p class="subtitle">A tool to help you identify and debunk fake news</p>
@@ -212,12 +212,12 @@
       </div>
     </section>
 
-    <!-- right -->
+  
     <aside class="monitor-card" aria-hidden="true">
       <div style="font-weight:700;color:#0f172a">FAKE NEWS</div>
 
       <div class="screen">
-        <!-- content inside screen -->
+      
         <div class="fake-text">
           <div style="height:14px;background:linear-gradient(90deg,#fff,#eef6ff);border-radius:6px;margin-bottom:10px;width:70%"></div>
           <div style="height:10px;background:linear-gradient(90deg,#fff,#f7fbff);border-radius:6px;margin-bottom:8px;width:55%"></div>
@@ -232,7 +232,7 @@
   </main>
 
   <script>
-    // small behavior: when search clicked show an alert (replace with real logic)
+    
     document.getElementById('searchBtn').addEventListener('click', function(){
       const q = document.getElementById('q').value.trim();
       if(!q){ alert('أدخل نص البحث أو عنوان الخبر'); return; }
