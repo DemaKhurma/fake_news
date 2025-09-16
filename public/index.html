@@ -1,80 +1,214 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Fake News Explorer</title>
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --nav-bg: #1e3a8a;   
+      --accent: #2563eb;   
+      --muted: #475569;    
+      --card-bg: #f9fafb;  
+      --container: 1100px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #e2e8f0 0%, #f8fafc 100%); /* تدرج فاتح */
+      color:#1e293b;
+    }
+
+    /* NAV */
+    .nav{
+      background: var(--nav-bg);
+      color: white;
+      padding:14px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    }
+    .nav .brand{
+      font-weight:800;
+      font-size:15px;
+    }
+    .nav .links{
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
+    .nav a{
+      color:rgba(255,255,255,0.95);
+      text-decoration:none;
+      padding:8px 12px;
+      border-radius:6px;
+      font-weight:600;
+      transition:0.2s;
+    }
+    .nav a:hover{ background: rgba(255,255,255,0.15) }
+
+    
+    .hero{
+      max-width: var(--container);
+      margin: 40px auto;
+      padding: 28px;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:center;
+    }
+
+    .hero-left h1{
+      margin:0 0 12px 0;
+      font-size:42px;
+      font-weight:800;
+      color:#1e3a8a;
+    }
+    .subtitle{
+      margin:0 0 18px 0;
+      color:var(--muted);
+      font-size:16px;
+    }
+
+    .search-row{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-top:6px;
+    }
+    .search-row input[type="text"]{
+      flex:1;
+      padding:12px 14px;
+      border-radius:999px;
+      border:1px solid #cbd5e1;
+      outline:none;
+      font-size:15px;
+      background:white;
+      color:#1e293b;
+    }
+    .search-row button{
+      background:var(--accent);
+      color:white;
+      border:none;
+      padding:10px 16px;
+      border-radius:999px;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.2s;
+    }
+    .search-row button:hover{ background:#1d4ed8 }
+
+    .how{
+      margin-top:26px;
+      background: var(--card-bg);
+      border-radius:10px;
+      padding:16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      border-left:4px solid var(--accent);
+    }
+    .how h3{ margin:0 0 8px 0; font-size:18px; color:#1e293b }
+    .how p{ margin:0; color:var(--muted); line-height:1.5 }
+
+    
+    .monitor-card{
+      background: var(--card-bg);
+      padding:20px;
+      border-radius:14px;
+      border:1px solid #e2e8f0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+    }
+    .monitor-card .screen{
+      width:320px;
+      height:200px;
+      border-radius:8px;
+      background: #f1f5f9;
+      border:8px solid #cbd5e1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+    }
+    .fake-stamp{
+      position:absolute;
+      right:12px;
+      top:12px;
+      background: #fee2e2;
+      border:2px solid #dc2626;
+      color:#b91c1c;
+      font-weight:800;
+      padding:6px 10px;
+      transform: rotate(-14deg);
+      border-radius:6px;
+      font-size:16px;
+      letter-spacing:0.6px;
+    }
+    .monitor-stand{
+      width:160px;height:28px;border-radius:6px;background:#cbd5e1;margin-top:6px;
+      display:block;
+    }
+
+    @media (max-width:980px){
+      .hero{ grid-template-columns: 1fr; padding:20px }
+      .monitor-card{ order:-1 }
+    }
+  </style>
 </head>
 <body>
 
-  
-  <aside class="sidebar">
-    <h2 class="logo">Fake News Explorer</h2>
-    <nav>
-      <ul>
-        <li><a href="#" data-page="home">Home</a></li>
-        <li><a href="#" data-page="sections">Sections</a></li>
-        <li><a href="#" data-page="contact">Contact Us</a></li>
-      </ul>
+  <header class="nav">
+    <div class="brand">
+      FAKE NEWS EXPLORER
+    </div>
+
+    <nav class="links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="sections.html">Sections</a>
+      <a href="contact.html">Contact</a>
     </nav>
-  </aside>
+  </header>
 
-  
-  <main id="content">
-    
-    <section id="home" class="page active">
-      <h1>الصفحة الرئيسية</h1>
-      
-      
-      <div class="check-section">
-        <h2>تحقق من الخبر</h2>
-        <textarea id="newsText" placeholder="انسخ نص الخبر هنا"></textarea>
-        <input id="newsUrl" placeholder="أو ضع رابط الخبر (اختياري)">
-        <button id="checkBtn">Check</button>
-        <div id="resultCard" class="card" style="display:none"></div>
+  <main class="hero">
+    <section class="hero-left">
+      <h1>FAKE NEWS EXPLORER</h1>
+      <p class="subtitle">A tool to help you identify and debunk fake news</p>
+
+      <div class="search-row">
+        <input type="text" id="q" placeholder="Search news stories" />
+        <button id="searchBtn">Search</button>
       </div>
 
-    
-      <div class="sections-grid">
-        <div class="section-box" data-section="1">قسم 1</div>
-        <div class="section-box" data-section="2">قسم 2</div>
-        <div class="section-box" data-section="3">قسم 3</div>
-        <div class="section-box" data-section="4">قسم 4</div>
-        <div class="section-box" data-section="5">قسم 5</div>
-        <div class="section-box" data-section="6">قسم 6</div>
+      <div class="how">
+        <h3>How It Works</h3>
+        <p>Enter a news story into the search bar above to check if it's fake or real.</p>
       </div>
     </section>
 
-    
-    <section id="sections" class="page">
-      <h1>الأقسام</h1>
-      <p>اختر أي قسم لعرض تفاصيله.</p>
-      <div class="sections-grid">
-        <div class="section-box" data-section="1">قسم 1</div>
-        <div class="section-box" data-section="2">قسم 2</div>
-        <div class="section-box" data-section="3">قسم 3</div>
-        <div class="section-box" data-section="4">قسم 4</div>
-        <div class="section-box" data-section="5">قسم 5</div>
-        <div class="section-box" data-section="6">قسم 6</div>
+    <aside class="monitor-card">
+      <div style="font-weight:700;color:#1e293b">FAKE NEWS</div>
+      <div class="screen">
+        <div class="fake-stamp">FAKE</div>
       </div>
-    </section>
-
-    
-    <section id="contact" class="page">
-      <h1>تواصل معنا</h1>
-      <p>الإيميل: info@example.com</p>
-      <p>الهاتف: 00962-123456789</p>
-    </section>
-
-    
-    <section id="single-section" class="page">
-      <h1 id="sectionTitle">عنوان القسم</h1>
-      <p>هنا محتوى القسم المختار.</p>
-    </section>
-
+      <div class="monitor-stand"></div>
+    </aside>
   </main>
 
-  <script src="app.JS"></script>
+  <script>
+    document.getElementById('searchBtn').addEventListener('click', function(){
+      const q = document.getElementById('q').value.trim();
+      if(!q){ alert('أدخل نص البحث أو عنوان الخبر'); return; }
+      alert('Searching for: ' + q);
+    });
+  </script>
 </body>
 </html>
+
+
