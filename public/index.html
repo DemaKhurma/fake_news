@@ -100,6 +100,16 @@
       cursor:pointer;
       transition:0.2s;
     }
+    .clssifyBtn button{
+      background:var(--accent);
+      color:white;
+      border:none;
+      padding:10px 16px;
+      border-radius:999px;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.2s;
+    }
     .search-row button:hover{ background:#1d4ed8 }
 
     .how{
@@ -184,6 +194,8 @@
       <div class="search-row">
         <input type="text" id="q" placeholder="Search news stories" />
         <button id="searchBtn">Search</button>
+        <button onclick="classifyNews()" id="clssifyBtn">classify</button>
+        <div id="result"></div>
       </div>
 
       <div class="how">
@@ -208,6 +220,7 @@
       alert('Searching for: ' + q);
     });
   </script>
+  <script src="news.js"></script>
 </body>
 </html>
 
