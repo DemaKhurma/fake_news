@@ -14,7 +14,6 @@ async function getTextFromURL(url) {
   return extractedText;
 }
 
-// دالة التصنيف
 async function classifyNews() {
   const input = document.getElementById("q").value.trim();
   const resultDiv = document.getElementById("result");
@@ -25,21 +24,19 @@ async function classifyNews() {
     return;
   }
 
-  // إذا كان الإدخال رابط
   if (input.startsWith("http://") || input.startsWith("https://")) {
     try {
       newsContent = await getTextFromURL(input);
-      if (!newsContent) newsContent = input; // fallback
+      if (!newsContent) newsContent = input; 
     } catch (err) {
       resultDiv.innerHTML = "<p>❌ خطأ عند جلب الرابط.</p>";
       return;
     }
   } else {
-    newsContent = input; // نص مباشر
+    newsContent = input; 
   }
 
   try {
-    // استدعاء Gemini API
     const response = await fetch(
       "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyA2eov2yTsbAaA8LNaN8hvtmmFAcLgcARo",
       {
@@ -65,10 +62,8 @@ async function classifyNews() {
     const data = await response.json();
     console.log("🔍 API Response:", data);
 
-    // قراءة التصنيف
     const category = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "غير معروف";
 
-    // عرض التصنيف فقط
     resultDiv.innerHTML = `<h4> التصنيف: ${category}</h4>`;
   } catch (error) {
     resultDiv.innerHTML = `<p>⚠️ حدث خطأ: ${error}</p>`;
