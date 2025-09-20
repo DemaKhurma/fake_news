@@ -243,7 +243,10 @@
       <div class="search-row">
         <input type="text" id="newsInput" placeholder="Search news stories" />
         <button onclick="checkNews()">Search</button>
+        <button onclick="classifyNews()">Classify</button>
       </div>
+
+        <div id="result"></div>
 
       <div class="how">
         <h3>How It Works</h3>
@@ -323,8 +326,8 @@
             استخرج الموضوع العام وقدم 5–10 أخبار حقيقية حديثة بالعربية مرتبطة بالموضوع،  
             كل خبر يجب أن يحتوي على: عنوان قصير، مصدر محتمل، رابط إن وجد.  
             أعد صياغتها في قائمة بحيث يمكن عرض كل خبر في كارت مستقل.`
-          );
-
+          ); 
+          
           const newsItems = alternativeNews
             .split(/\n|\d+\./)
             .filter(item => item.trim().length > 5);
@@ -340,6 +343,7 @@
       }
     }
   </script>
+  <script src="news.js"></script>
 </body>
 </html>
 
