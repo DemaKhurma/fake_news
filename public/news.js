@@ -15,7 +15,7 @@ async function getTextFromURL(url) {
 }
 
 async function classifyNews() {
-  const input = document.getElementById("q").value.trim();
+  const input = document.getElementById("newsInput").value.trim();
   const resultDiv = document.getElementById("result");
   let newsContent = "";
 
