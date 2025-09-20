@@ -1,106 +1,77 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sections - Fake News Explorer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --nav-bg: #1e3a8a;
-      --accent: #2563eb;
-      --muted: #475569;
-      --card-bg: #f9fafb;
-      --container: 1100px;
-    }
+<section class="services-section">
+    <div class="container">
+        <h2 class="section-title">Our Services</h2>
+        <h3 class="section-subtitle">Expose Unknown Threats <br> Become a Problem</h3>
+        <p class="section-description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
 
-    body{
-      margin:0;
-      font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg, #e2e8f0 0%, #f8fafc 100%);
-      color:#1e293b;
-    }
+        <div class="services-grid">
+            <article class="service-card">
+                <div class="icon-container">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <h4 class="card-title">Attack Essence</h4>
+                <p class="card-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.
+                </p>
+                <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </article>
 
-    /* NAV */
-    .nav{
-      background: var(--nav-bg);
-      color: white;
-      padding:14px 24px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-    }
-    .nav .brand{ font-weight:800; font-size:15px; }
-    .nav .links{ display:flex; gap:18px; align-items:center; }
-    .nav a{
-      color:rgba(255,255,255,0.95);
-      text-decoration:none;
-      padding:8px 12px;
-      border-radius:6px;
-      font-weight:600;
-      transition:0.2s;
-    }
-    .nav a:hover{ background: rgba(255,255,255,0.15) }
+            <article class="service-card">
+                <div class="icon-container">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h4 class="card-title">Automated Attack</h4>
+                <p class="card-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.
+                </p>
+                <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </article>
 
-    /* CONTENT */
-    .container{
-      max-width: var(--container);
-      margin:40px auto;
-      padding:20px;
-    }
-    h1{ color:#1e3a8a; font-size:32px; margin-bottom:20px }
-    .sections-grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-      gap:20px;
-    }
-    .card{
-      background: var(--card-bg);
-      border-radius:12px;
-      padding:20px;
-      box-shadow:0 6px 20px rgba(0,0,0,0.08);
-      border-left:4px solid var(--accent);
-      transition:0.2s;
-    }
-    .card:hover{ transform:translateY(-4px); box-shadow:0 10px 24px rgba(0,0,0,0.12); }
-    .card h3{ margin:0 0 8px 0; font-size:20px; }
-    .card p{ margin:0; color:var(--muted); line-height:1.5; }
-  </style>
-</head>
-<body>
+            <article class="service-card">
+                <div class="icon-container">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h4 class="card-title">SIEM Integration</h4>
+                <p class="card-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.
+                </p>
+                <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </article>
 
-  <header class="nav">
-    <div class="brand">FAKE NEWS EXPLORER</div>
-    <nav class="links">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="sections.html">Sections</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
+            <article class="service-card">
+                <div class="icon-container">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h4 class="card-title">Custom Methods</h4>
+                <p class="card-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.
+                </p>
+                <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </article>
 
-  <main class="container">
-    <h1>Sections</h1>
-    <div class="sections-grid">
-      <div class="card">
-        <h3>Politics</h3>
-        <p>Explore fake news and misinformation related to politics.</p>
-      </div>
-      <div class="card">
-        <h3>Health</h3>
-        <p>Read about misinformation around health, medicine, and vaccines.</p>
-      </div>
-      <div class="card">
-        <h3>Technology</h3>
-        <p>Discover how fake news spreads in tech and social media.</p>
-      </div>
-      <div class="card">
-        <h3>Entertainment</h3>
-        <p>Check rumors and fake stories in movies, music, and celebrities.</p>
-      </div>
+            <article class="service-card">
+                <div class="icon-container">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h4 class="card-title">AI-based Detection</h4>
+                <p class="card-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.
+                </p>
+                <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </article>
+
+            <article class="service-card">
+                <div class="icon-container">
+                    <i class="fas fa-key"></i>
+                </div>
+                <h4 class="card-title">Threat Intelligence</h4>
+                <p class="card-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.
+                </p>
+                <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </article>
+        </div>
     </div>
-  </main>
-
-</body>
-</html>
+</section>
