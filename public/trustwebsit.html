@@ -5,80 +5,118 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trust Website</title>
   <style>
-     .nav {
+    :root {
+      --nav-bg: #061018;
+      --link-hover: rgba(255, 255, 255, 0.2);
+      --card-bg: gray;
+      --card-hover: rgba(0, 119, 182, 0.1);
+      --primary-color: gray;
+      --text-color: white;
+    }
+
+    
+    .nav {
       background: var(--nav-bg);
       color: white;
-      padding: 14px 24px;
+      padding: 15px 30px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .nav .brand {
       font-weight: 800;
-      font-size: 15px;
+      font-size: 18px;
+      text-transform: uppercase;
     }
 
     .nav .links {
       display: flex;
-      gap: 18px;
+      gap: 20px;
       align-items: center;
     }
 
     .nav a {
-      color: rgba(255, 255, 255, 0.95);
+      color: white;
       text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 6px;
+      padding: 10px 16px;
+      border-radius: 8px;
       font-weight: 600;
-      transition: 0.2s;
+      transition: background-color 0.3s ease, transform 0.3s ease;
     }
 
     .nav a:hover {
-      background: rgba(255, 255, 255, 0.15);
+      background-color: var(--link-hover);
+      transform: scale(1.05);
     }
-      body {
+
+    body {
       margin: 0;
       font-family: "Poppins", sans-serif;
       background-color: #061018;
       color: #fff;
     }
+
     h1 {
       text-align: center;
-      color: #333;
+      color: var(--primary-color);
+      margin-top: 50px;
+      font-size: 28px;
     }
+
+    
     .card {
-      background: white;
+      background: var(--card-bg);
       border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       padding: 20px;
-      margin: 15px 0;
-      transition: transform 0.2s;
+      margin: 20px auto;
+      max-width: 900px;
+      transition: transform 0.3s ease, background-color 0.3s ease;
     }
+
     .card:hover {
       transform: scale(1.02);
+      background-color: var(--card-hover);
     }
+
     .card h2 {
       margin-top: 0;
-      color: #0077b6;
+      color: var(--primary-color);
+      font-size: 22px;
+      margin-bottom: 10px;
     }
+
     .card ul {
       list-style: none;
       padding: 0;
     }
+
     .card ul li {
-      margin: 8px 0;
+      margin: 12px 0;
     }
+
     .card ul li a {
       text-decoration: none;
       color: #444;
       font-weight: bold;
-      transition: color 0.2s;
+      font-size: 16px;
+      transition: color 0.2s ease;
     }
+
     .card ul li a:hover {
-      color: #0077b6;
+      color: var(--primary-color);
     }
+
+    
+    #sections {
+      margin-top: 40px;
+    }
+
   </style>
 </head>
 <body>
@@ -91,23 +129,25 @@
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="sections.html">Sections</a>
-      <a href="trustwebsit.html">Trustwibsite</a>
+      <a href="trustwebsit.html">Trustwebsite</a>
     </nav>
   </header>
-  <h1>🌍 مواقع الأخبار الموثوقة</h1>
+
+  <h1>Trusted sites</h1>
+
   <div id="sections"></div>
 
   <script>
     const linksList = {
-      "رياضي": ["https://www.espn.com", "https://www.skysports.com"],
-      "سياسي": ["https://www.aljazeera.net", "https://www.bbc.com/arabic"],
-      "اقتصادي": ["https://www.cnbc.com", "https://www.bloomberg.com"],
-      "تكنولوجي": ["https://www.techcrunch.com", "https://www.theverge.com"],
-      "صحي": ["https://www.webmd.com", "https://www.mayoclinic.org"],
-      "ثقافي / فني": ["https://www.imdb.com", "https://www.billboard.com"],
-      "بيئي / علمي": ["https://www.nationalgeographic.com", "https://www.sciencemag.org"],
-      "ترفيهي / مشاهير": ["https://www.tmz.com", "https://www.people.com"],
-      "تعليمي": ["https://www.edraak.org", "https://www.khanacademy.org"]
+      "sport": ["https://www.espn.com", "https://www.skysports.com"],
+      "political": ["https://www.aljazeera.net", "https://www.bbc.com/arabic"],
+      "economic": ["https://www.cnbc.com", "https://www.bloomberg.com"],
+      "Technological": ["https://www.techcrunch.com", "https://www.theverge.com"],
+      "healthy": ["https://www.webmd.com", "https://www.mayoclinic.org"],
+      "Cultural\artistic": ["https://www.imdb.com", "https://www.billboard.com"],
+      "Environmental\scientific" : ["https://www.nationalgeographic.com", "https://www.sciencemag.org"],
+      "Entertainment\Celebrities": ["https://www.tmz.com", "https://www.people.com"],
+      "education": ["https://www.edraak.org", "https://www.khanacademy.org"]
     };
 
     const container = document.getElementById("sections");
