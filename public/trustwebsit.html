@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trust Website</title>
+  <style>
+     .nav {
+      background: var(--nav-bg);
+      color: white;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav .brand {
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .nav .links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .nav a {
+      color: rgba(255, 255, 255, 0.95);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .nav a:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+      body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background-color: #061018;
+      color: #fff;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 15px 0;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.02);
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #0077b6;
+    }
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+    .card ul li {
+      margin: 8px 0;
+    }
+    .card ul li a {
+      text-decoration: none;
+      color: #444;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+    .card ul li a:hover {
+      color: #0077b6;
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="brand">
+      FAKE NEWS EXPLORER
+    </div>
+
+    <nav class="links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="sections.html">Sections</a>
+      <a href="trustwebsit.html">Trustwibsite</a>
+    </nav>
+  </header>
+  <h1>🌍 مواقع الأخبار الموثوقة</h1>
+  <div id="sections"></div>
+
+  <script>
+    const linksList = {
+      "رياضي": ["https://www.espn.com", "https://www.skysports.com"],
+      "سياسي": ["https://www.aljazeera.net", "https://www.bbc.com/arabic"],
+      "اقتصادي": ["https://www.cnbc.com", "https://www.bloomberg.com"],
+      "تكنولوجي": ["https://www.techcrunch.com", "https://www.theverge.com"],
+      "صحي": ["https://www.webmd.com", "https://www.mayoclinic.org"],
+      "ثقافي / فني": ["https://www.imdb.com", "https://www.billboard.com"],
+      "بيئي / علمي": ["https://www.nationalgeographic.com", "https://www.sciencemag.org"],
+      "ترفيهي / مشاهير": ["https://www.tmz.com", "https://www.people.com"],
+      "تعليمي": ["https://www.edraak.org", "https://www.khanacademy.org"]
+    };
+
+    const container = document.getElementById("sections");
+
+    for (let category in linksList) {
+      let html = `<div class="card"><h2>${category}</h2><ul>`;
+      for (let link of linksList[category]) {
+        html += `<li><a href="${link}" target="_blank">${link}</a></li>`;
+      }
+      html += "</ul></div>";
+      container.innerHTML += html;
+    }
+  </script>
+</body>
+</html>
+

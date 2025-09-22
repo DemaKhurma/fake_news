@@ -1,111 +1,111 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sections - Fake News Explorer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    :root{
-      --nav-bg: #1e3a8a;
-      --accent: #2563eb;
-      --muted: #475569;
-      --card-bg: #f9fafb;
-      --container: 1100px;
-    }
-
-    body{
-      margin:0;
-      font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg, #e2e8f0 0%, #f8fafc 100%);
-      color:#1e293b;
-    }
-
-    /* NAV */
-    .nav{
+    .nav {
       background: var(--nav-bg);
       color: white;
-      padding:14px 24px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
     }
-    .nav .brand{ font-weight:800; font-size:15px; }
-    .nav .links{ display:flex; gap:18px; align-items:center; }
-    .nav a{
-      color:rgba(255,255,255,0.95);
-      text-decoration:none;
-      padding:8px 12px;
-      border-radius:6px;
-      font-weight:600;
-      transition:0.2s;
-    }
-    .nav a:hover{ background: rgba(255,255,255,0.15) }
 
-    /* CONTENT */
-    .container{
-      max-width: var(--container);
-      margin:40px auto;
-      padding:20px;
+    .nav .brand {
+      font-weight: 800;
+      font-size: 15px;
     }
-    h1{ color:#1e3a8a; font-size:32px; margin-bottom:20px }
-    .sections-grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-      gap:20px;
+
+    .nav .links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
     }
-    .card{
-      background: var(--card-bg);
-      border-radius:12px;
-      padding:20px;
-      box-shadow:0 6px 20px rgba(0,0,0,0.08);
-      border-left:4px solid var(--accent);
-      transition:0.2s;
+
+    .nav a {
+      color: rgba(255, 255, 255, 0.95);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: 0.2s;
     }
-    .card:hover{ transform:translateY(-4px); box-shadow:0 10px 24px rgba(0,0,0,0.12); }
-    .card h3{ margin:0 0 8px 0; font-size:20px; }
-    .card p{ margin:0; color:var(--muted); line-height:1.5; }
+
+    .nav a:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background-color: #061018;
+      color: #fff;
+    }
+    section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 80px 10%;
+      gap: 40px;
+    }
+
+    section:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    section img {
+      width: 45%;
+      border-radius: 12px;
+    }
+
+    section .text {
+      width: 50%;
+    }
+
+    section .text h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
   </style>
 </head>
 <body>
+ <header class="nav">
+    <div class="brand">
+      FAKE NEWS EXPLORER
+    </div>
 
-  <header class="nav">
-    <div class="brand">FAKE NEWS EXPLORER</div>
     <nav class="links">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="sections.html">Sections</a>
-      <a href="contact.html">Contact</a>
+      <a href="trustwebsit.html">Trustwibsite</a>
     </nav>
   </header>
-
-  <main class="container">
-    <h1>Sections</h1>
-    <div class="sections-grid">
-      <div class="card">
-        <h3>Politics</h3>
-        <p>Explore fake news and misinformation related to politics.</p>
-      </div>
-      <div class="card">
-        <h3>Health</h3>
-        <p>Read about misinformation around health, medicine, and vaccines.</p>
-      </div>
-      <div class="card">
-        <h3>Technology</h3>
-        <p>Discover how fake news spreads in tech and social media.</p>
-      </div>
-      <div class="card">
-        <h3>Entertainment</h3>
-        <p>Check rumors and fake stories in movies, music, and celebrities.</p>
-      </div>
+  <section>
+    <div class="text">
+      <h2>01. Do you want to verify the accuracy of the announced news?</h2>
+      <p>With us you can check your news with the click of a button..</p>
     </div>
-  </main>
-<!-- Firebase App (الأساسي) -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <img src="/public/images/pexels-introspectivedsgn-6284359.jpg" alt="Hiker">
+  </section>
 
-<!-- Firebase Functions -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-functions-compat.js"></script>
-<script type="module" src="app.js"></script>
+  <section>
+    <div class="text">
+      <h2>02.Want to take a look at trusted sites?</h2>
+      <p>You can take a look through the Trusted Sites section.</p>
+    </div>
+    <img src="/public/images/pexels-leeloothefirst-5561911.jpg" alt="Gear">
+  </section>
+
+  <section>
+    <div class="text">
+      <h2>03. Are you interested in knowing who created the site?</h2>
+      <p>You can take a look at us and contact us via the About Us section.</p>
+    </div>
+    <img src="/public/images/pexels-karolina-grabowska-7876786.jpg" alt="Map">
+  </section>
 </body>
 </html>
