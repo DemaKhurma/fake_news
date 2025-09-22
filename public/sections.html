@@ -4,6 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    .nav {
+      background: var(--nav-bg);
+      color: white;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav .brand {
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .nav .links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .nav a {
+      color: rgba(255, 255, 255, 0.95);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .nav a:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
@@ -39,7 +72,18 @@
   </style>
 </head>
 <body>
+ <header class="nav">
+    <div class="brand">
+      FAKE NEWS EXPLORER
+    </div>
 
+    <nav class="links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="sections.html">Sections</a>
+      <a href="trustwebsit.html">Trustwibsite</a>
+    </nav>
+  </header>
   <section>
     <div class="text">
       <h2>01. Do you want to verify the accuracy of the announced news?</h2>
