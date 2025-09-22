@@ -160,6 +160,12 @@
       .monitor-card{ order:-1 }
     }
   </style>
+
+   <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-functions-compat.js"></script>
 </head>
 <body>
 
@@ -183,7 +189,7 @@
 
       <div class="search-row">
         <input type="text" id="q" placeholder="Search news stories" />
-        <button id="searchBtn">Search</button>
+        <button id="analyzeButton">Search</button>
       </div>
 
       <div class="how">
@@ -202,12 +208,18 @@
   </main>
 
   <script>
-    document.getElementById('searchBtn').addEventListener('click', function(){
+    document.getElementById('analyzeButton').addEventListener('click', function(){
       const q = document.getElementById('q').value.trim();
       if(!q){ alert('أدخل نص البحث أو عنوان الخبر'); return; }
       alert('Searching for: ' + q);
     });
   </script>
+    <!-- Firebase App (الأساسي) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+
+<!-- Firebase Functions -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-functions-compat.js"></script>
+<script type="module" src="app.js"></script>
 </body>
 </html>
 
