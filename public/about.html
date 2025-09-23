@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Fake News Explorer</title>
+
+  <style>
+    :root{
+      --nav-bg: #1e3a8a;
+      --accent: #2563eb;
+      --muted: #475569;
+      --card-bg: #f9fafb;
+      --container: 1100px;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #e2e8f0 0%, #f8fafc 100%);
+      color:#1e293b;
+    }
+
+    /* --- Navbar ثابت --- */
+    .nav{
+      position: sticky;
+      top: 0;
+      background: var(--nav-bg);
+      color: white;
+      padding:14px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+
+    .nav .logo{
+      font-weight:800;
+      font-size:15px;
+    }
+
+    .nav .links{
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
+
+    .nav a{
+      color:rgba(255,255,255,0.95);
+      text-decoration:none;
+      padding:8px 12px;
+      border-radius:6px;
+      font-weight:600;
+      transition:0.2s;
+    }
+
+    .nav a:hover{ background: rgba(255,255,255,0.15) }
+
+    /* --- Container رئيسي --- */
+    .container{
+      max-width: var(--container);
+      margin: 80px auto 40px auto; /* 80px للـ navbar الثابت */
+      padding: 0 20px;
+    }
+
+    /* --- About Section --- */
+    .about {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 28px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border: 1px solid #e2e8f0;
+    }
+
+    .about h2, 
+    .about h3 {
+      text-align: center;
+      color: var(--nav-bg);
+      font-weight: 800;
+    }
+
+    .about h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .about h3 {
+      margin-top: 30px;
+      font-size: 22px;
+      color: var(--accent);
+    }
+
+    .about p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 17px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .about ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto 20px;
+      max-width: 400px;
+    }
+
+    .about ul li {
+      background: white;
+      margin: 8px 0;
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      text-align: center;
+      font-weight: 600;
+      color: #1e293b;
+      transition: 0.2s;
+    }
+
+    .about ul li:hover {
+      background: #f1f5f9;
+      transform: translateY(-3px);
+    }
+
+    /* --- Contact Section --- */
+    .contact {
+      max-width: 900px;
+      margin: 50px auto 0 auto;
+      padding: 24px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border: 1px solid #e2e8f0;
+    }
+
+    .contact h2 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 20px;
+      font-weight: 800;
+      color: var(--nav-bg);
+    }
+
+    .contact ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto;
+      max-width: 500px;
+    }
+
+    .contact ul li {
+      margin: 10px 0;
+      padding: 12px 16px;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      text-align: center;
+      transition: 0.2s;
+    }
+
+    .contact ul li:hover {
+      background: #f1f5f9;
+      transform: translateY(-3px);
+    }
+
+    .contact a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    :root {
+  --bg: #f5f5f5;
+  --text: #222;
+  --muted: #666;
+  --accent: #111;
+  --link: #0077cc;
+  --container-width: 1100px;
+  --gap: 32px;
+  font-family: 'Tajawal', Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.site-footer {
+  background: var(--bg);
+  border-top: 1px solid #475569;
+  padding: 40px 20px 20px;
+  background-color:#cbd5e1;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--gap);
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 260px;
+}
+.logo {
+  width: 64px;
+  height: 64px;
+}
+.brand-text .site-name {
+  font-weight: 700;
+  font-size: 22px;
+}
+.brand-text .tagline {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 240px;
+}
+.footer-col h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: var(--accent);
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.email {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.email svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--accent);
+}
+.email a {
+  color: var(--link);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.email a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+.copyright {
+  text-align: center;
+  margin-top: 30px;
+  color: var(--muted);
+  font-size: 14px;
+}
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="nav">
+    <div class="logo">FAKE NEWS EXPLORER</div>
+    <nav class="links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="sections.html">Sections</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+  
+  <div class="container">
+
+    <section class="about">
+      <h2>About Us</h2>
+      <p>We are four students from the College of Information Technology at Al al-Bayt University:</p>
+      <ul>
+        <li>Dema Abu-Khurma</li>
+        <li>Manar Abu-Irsheid</li>
+        <li>Dana Alhajeid</li>
+        <li>Reem Abdalghani</li>
+      </ul>
+
+      <h3>Project Idea</h3>
+      <p>Our project, <b>Fake News Detector</b>, is an intelligent AI system that helps users verify the credibility of news circulating on social media.</p>
+
+      <h3>Why We Made This</h3>
+      <p>In today's world, most people use social media to receive news. Millions of users share news daily without verifying its accuracy. This can cause serious problems: misleading public opinion, spreading rumors, and negative effects on mental, political, and social well-being.</p>
+
+      <h3>Goal</h3>
+      <p>To provide a simple and user-friendly tool. Users just copy and paste the news or its link into the site and press the analyze button to see if it is real or fake.</p>
+    </section> 
+
+    <section class="contact">
+      <h2>Contact Us</h2>
+      <ul>
+        <li><b>Dema Abu-Khurma</b> – <a href="http://linkedin.com/in/dema-abu-khurma-a22884229" target="_blank">LinkedIn</a></li>
+        <li><b>Manar Abu-Irsheid</b> – <a href="http://linkedin.com/in/manar-abu-irsheid-06b352325" target="_blank">LinkedIn</a></li>
+        <li><b>Dana Alhajeid</b> – <a href="http://linkedin.com/in/dana-a-ahmad-0b5431359" target="_blank">LinkedIn</a></li>
+        <li><b>Reem Abdalghani</b> – <a href="https://www.linkedin.com/in/reem-abdalghani-851444372" target="_blank">LinkedIn</a></li>
+      </ul>
+    </section>
+
+  </div>
+
+  <!-- Firebase (اختياري) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-functions-compat.js"></script>
+  <script type="module" src="app.js"></script>
+  <br>
+  <footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="brand">
+      <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#111" stroke-width="6"/>
+            <circle cx="55" cy="55" r="20" fill="none" stroke="#111" stroke-width="5"/>
+            <line x1="70" y1="70" x2="90" y2="90" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+            <path d="M45 55 l8 8 l12 -14" stroke="#28a745" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="brand-text">
+        <div class="site-name">fake news explorer</div>
+        <div class="tagline">A platform for fact-checking news using artificial intelligence</div>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h3>Contact Us</h3>
+      <div class="contact">
+        <div class="email">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 2v.01L12 13 20 6.01V6H4z"/>
+          </svg>
+          <a href="mailto:ttruescope2025@gmail.com">ttruescope2025@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="copyright">
+    © 2025 TrueScope - Fake News Explorer | جميع الحقوق محفوظة
+  </div>
+</footer>
+</body>
+</html>
+

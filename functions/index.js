@@ -1,28 +1,30 @@
 const functions = require("firebase-functions");
 const axios = require("axios");
 
+// قراءة القيم من Firebase Functions Config
+const GEMINI_API_KEY = functions.config().gemini.key;
+const MODEL_NAME = functions.config().gemini.model || "gemini-1.5-pro";
 
-const MODEL_NAME = process.env.MODEL_NAME || "gemini-1.5-pro";
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-
-
+// دالة اختبار بسيطة
 exports.helloWorld = functions.https.onRequest((req, res) => {
   res.send("Hello from Firebase!");
 });
 
-
-exports.checkNewsGemini = functions.https.onRequest(async (req, res) => {
+// دالة التحقق من الأخبار باستخدام Gemini
+exports.analyzeNews = functions.https.onCall(async (data, context) => {
   try {
-    if (req.method !== "POST") return res.status(405).send("Method not allowed");
+    const { text, link, lang } = data;
 
-    const { text, url, lang } = req.body || {};
-    if (!text || typeof text !== "string") return res.status(400).json({ error: "Missing text" });
-
-    if (!GEMINI_API_KEY) {
-      console.error("GEMINI key not configured");
-      return res.status(500).json({ error: "Server misconfigured" });
+    if (!text || typeof text !== "string") {
+      throw new functions.https.HttpsError("invalid-argument", "Missing or invalid text");
     }
 
+    if (!GEMINI_API_KEY) {
+      console.error("❌ GEMINI_API_KEY not configured");
+      throw new functions.https.HttpsError("failed-precondition", "Server misconfigured");
+    }
+
+    // بناء البرومبت
     const prompt = `
 You are a fact-checking assistant. Analyze the following news text and return a JSON object only (no extra explanation).
 Respond in ${lang === "en" ? "English" : "Arabic"}.
@@ -38,12 +40,11 @@ Return JSON with keys:
   - fact_check: array of {claim, publisher, url}
 `;
 
-    const endpoint = `https://generativelanguage.googleapis.com/v1beta2/models/${encodeURIComponent(MODEL_NAME)}:generateContent`;
+    // استدعاء Gemini API
+    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(MODEL_NAME)}:generateContent`;
 
     const r = await axios.post(endpoint, {
-      prompt: { text: prompt },
-      temperature: 0.2,
-      maxOutputTokens: 800,
+      contents: [{ role: "user", parts: [{ text: prompt }] }]
     }, {
       headers: {
         "Content-Type": "application/json",
@@ -52,23 +53,26 @@ Return JSON with keys:
       timeout: 60000
     });
 
-    
-    const raw = r.data;
+    // استخراج النص من استجابة Gemini
     let modelText = "";
-    if (raw?.candidates && raw.candidates[0]?.content) modelText = raw.candidates[0].content;
-    else if (raw?.output?.[0]?.content) modelText = raw.output[0].content;
-    else if (raw?.content) modelText = String(raw.content);
-    else modelText = JSON.stringify(raw).slice(0, 2000);
+    if (r.data && r.data.candidates && r.data.candidates[0] && r.data.candidates[0].content && r.data.candidates[0].content.parts && r.data.candidates[0].content.parts[0] && r.data.candidates[0].content.parts[0].text) {
+  modelText = r.data.candidates[0].content.parts[0].text;
+} else {
+  modelText = JSON.stringify(r.data).slice(0, 2000);
+}
 
+    // محاولة تحويل النص إلى JSON
     let parsed = null;
-    try { parsed = JSON.parse(modelText); }
-    catch (e) {
+    try {
+      parsed = JSON.parse(modelText);
+    } catch (e) {
       const jmatch = modelText.match(/\{[\s\S]*\}/);
       if (jmatch) {
-        try { parsed = JSON.parse(jmatch[0]); } catch(e2){ parsed = null; }
+        try { parsed = JSON.parse(jmatch[0]); } catch (e2) { parsed = null; }
       }
     }
 
+    // fallback إذا ما قدر يحلل JSON
     if (!parsed) {
       const lower = modelText.toLowerCase();
       const classification = lower.includes("fake") ? "fake" : (lower.includes("true") ? "true" : "unknown");
@@ -81,10 +85,10 @@ Return JSON with keys:
       };
     }
 
-    return res.json(parsed);
+    return parsed;
 
   } catch (err) {
-    console.error("checkNewsGemini error:", err?.response?.data || err.message || err);
-    return res.status(500).json({ error: "Internal Server Error" });
+    console.error("❌ analyzeNews error:", (err?.response?.data )|| err.message || err);
+    throw new functions.https.HttpsError("internal", "Internal Server Error");
   }
 });

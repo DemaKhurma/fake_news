@@ -5,118 +5,179 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trust Website</title>
   <style>
-    :root {
-      --nav-bg: #061018;
-      --link-hover: rgba(255, 255, 255, 0.2);
-      --card-bg: gray;
-      --card-hover: rgba(0, 119, 182, 0.1);
-      --primary-color: gray;
-      --text-color: white;
-    }
-
-    
-    .nav {
+     .nav {
       background: var(--nav-bg);
       color: white;
-      padding: 15px 30px;
+      padding: 14px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
     }
 
     .nav .brand {
       font-weight: 800;
-      font-size: 18px;
-      text-transform: uppercase;
+      font-size: 15px;
     }
 
     .nav .links {
       display: flex;
-      gap: 20px;
+      gap: 18px;
       align-items: center;
     }
 
     .nav a {
-      color: white;
+      color: rgba(255, 255, 255, 0.95);
       text-decoration: none;
-      padding: 10px 16px;
-      border-radius: 8px;
+      padding: 8px 12px;
+      border-radius: 6px;
       font-weight: 600;
-      transition: background-color 0.3s ease, transform 0.3s ease;
+      transition: 0.2s;
     }
 
     .nav a:hover {
-      background-color: var(--link-hover);
-      transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.15);
     }
-
-    body {
+      body {
       margin: 0;
       font-family: "Poppins", sans-serif;
       background-color: #061018;
       color: #fff;
     }
-
     h1 {
       text-align: center;
-      color: var(--primary-color);
-      margin-top: 50px;
-      font-size: 28px;
+      color: #333;
     }
-
-    
     .card {
-      background: var(--card-bg);
+      background: white;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       padding: 20px;
-      margin: 20px auto;
-      max-width: 900px;
-      transition: transform 0.3s ease, background-color 0.3s ease;
+      margin: 15px 0;
+      transition: transform 0.2s;
     }
-
     .card:hover {
       transform: scale(1.02);
-      background-color: var(--card-hover);
     }
-
     .card h2 {
       margin-top: 0;
-      color: var(--primary-color);
-      font-size: 22px;
-      margin-bottom: 10px;
+      color: #0077b6;
     }
-
     .card ul {
       list-style: none;
       padding: 0;
     }
-
     .card ul li {
-      margin: 12px 0;
+      margin: 8px 0;
     }
-
     .card ul li a {
       text-decoration: none;
       color: #444;
       font-weight: bold;
-      font-size: 16px;
-      transition: color 0.2s ease;
+      transition: color 0.2s;
     }
-
     .card ul li a:hover {
-      color: var(--primary-color);
+      color: #0077b6;
     }
 
-    
-    #sections {
-      margin-top: 40px;
-    }
+    :root {
+  --bg: #f5f5f5;
+  --text: #222;
+  --muted: #666;
+  --accent: #111;
+  --link: #0077cc;
+  --container-width: 1100px;
+  --gap: 32px;
+  font-family: 'Tajawal', Arial, sans-serif;
+}
 
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.site-footer {
+  background: var(--bg);
+  border-top: 1px solid #475569;
+  padding: 40px 20px 20px;
+  background-color:#cbd5e1;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--gap);
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 260px;
+}
+.logo {
+  width: 64px;
+  height: 64px;
+}
+.brand-text .site-name {
+  font-weight: 700;
+  font-size: 22px;
+}
+.brand-text .tagline {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 240px;
+}
+.footer-col h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: var(--accent);
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.email {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.email svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--accent);
+}
+.email a {
+  color: var(--link);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.email a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+.copyright {
+  text-align: center;
+  margin-top: 30px;
+  color: var(--muted);
+  font-size: 14px;
+}
   </style>
 </head>
 <body>
@@ -129,25 +190,23 @@
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="sections.html">Sections</a>
-      <a href="trustwebsit.html">Trustwebsite</a>
+      <a href="trustwebsit.html">Trustwibsite</a>
     </nav>
   </header>
-
-  <h1>Trusted sites</h1>
-
+  <h1>🌍 مواقع الأخبار الموثوقة</h1>
   <div id="sections"></div>
 
   <script>
     const linksList = {
-      "sport": ["https://www.espn.com", "https://www.skysports.com"],
-      "political": ["https://www.aljazeera.net", "https://www.bbc.com/arabic"],
-      "economic": ["https://www.cnbc.com", "https://www.bloomberg.com"],
-      "Technological": ["https://www.techcrunch.com", "https://www.theverge.com"],
-      "healthy": ["https://www.webmd.com", "https://www.mayoclinic.org"],
-      "Cultural\artistic": ["https://www.imdb.com", "https://www.billboard.com"],
-      "Environmental\scientific" : ["https://www.nationalgeographic.com", "https://www.sciencemag.org"],
-      "Entertainment\Celebrities": ["https://www.tmz.com", "https://www.people.com"],
-      "education": ["https://www.edraak.org", "https://www.khanacademy.org"]
+      "رياضي": ["https://www.espn.com", "https://www.skysports.com"],
+      "سياسي": ["https://www.aljazeera.net", "https://www.bbc.com/arabic"],
+      "اقتصادي": ["https://www.cnbc.com", "https://www.bloomberg.com"],
+      "تكنولوجي": ["https://www.techcrunch.com", "https://www.theverge.com"],
+      "صحي": ["https://www.webmd.com", "https://www.mayoclinic.org"],
+      "ثقافي / فني": ["https://www.imdb.com", "https://www.billboard.com"],
+      "بيئي / علمي": ["https://www.nationalgeographic.com", "https://www.sciencemag.org"],
+      "ترفيهي / مشاهير": ["https://www.tmz.com", "https://www.people.com"],
+      "تعليمي": ["https://www.edraak.org", "https://www.khanacademy.org"]
     };
 
     const container = document.getElementById("sections");
@@ -161,6 +220,39 @@
       container.innerHTML += html;
     }
   </script>
+
+  <footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="brand">
+      <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#111" stroke-width="6"/>
+            <circle cx="55" cy="55" r="20" fill="none" stroke="#111" stroke-width="5"/>
+            <line x1="70" y1="70" x2="90" y2="90" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+            <path d="M45 55 l8 8 l12 -14" stroke="#28a745" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="brand-text">
+        <div class="site-name">fake news explorer</div>
+        <div class="tagline">A platform for fact-checking news using artificial intelligence</div>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h3>Contact Us</h3>
+      <div class="contact">
+        <div class="email">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 2v.01L12 13 20 6.01V6H4z"/>
+          </svg>
+          <a href="mailto:ttruescope2025@gmail.com">ttruescope2025@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="copyright">
+    © 2025 TrueScope - Fake News Explorer | جميع الحقوق محفوظة
+  </div>
+</footer>
 </body>
 </html>
 
