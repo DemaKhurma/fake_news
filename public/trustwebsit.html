@@ -2,10 +2,31 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trust Website</title>
+  <title>Trusted Websites</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-     .nav {
+    :root {
+      --nav-bg: #061018;
+      --accent: #061018;
+      --muted: #475569;
+      --card-bg: #f9fafb;
+      --container: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #e2e8f0 0%, #f8fafc 100%);
+      color: #1e293b;
+      direction: ltr;
+      text-align: left;
+    }
+
+    .nav {
       background: var(--nav-bg);
       color: white;
       padding: 14px 24px;
@@ -38,50 +59,86 @@
     .nav a:hover {
       background: rgba(255, 255, 255, 0.15);
     }
-      body {
+
+    body {
       margin: 0;
       font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background-color: #061018;
-      color: #fff;
-    }
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-    .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      padding: 20px;
-      margin: 15px 0;
-      transition: transform 0.2s;
-    }
-    .card:hover {
-      transform: scale(1.02);
-    }
-    .card h2 {
-      margin-top: 0;
-      color: #0077b6;
-    }
-    .card ul {
-      list-style: none;
-      padding: 0;
-    }
-    .card ul li {
-      margin: 8px 0;
-    }
-    .card ul li a {
-      text-decoration: none;
-      color: #444;
-      font-weight: bold;
-      transition: color 0.2s;
-    }
-    .card ul li a:hover {
-      color: #0077b6;
+      background: linear-gradient(135deg, #111, #333);
+      color: #111;
     }
 
-    :root {
-  --nav-bg: #061018;
+    .page-title {
+      text-align: center;
+      color: #111;
+      font-size: 34px;
+      font-weight: 500;
+      margin: 40px 0 25px 0;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+    }
+
+    .sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 35px;
+      padding: 40px;
+      max-width: 1250px;
+      margin: auto;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      background: #1e1e1e;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 14px 35px rgba(255,0,0,0.45),
+                  0 0 25px rgba(255,0,0,0.6);
+    }
+
+    .card a {
+      display: block;
+      height: 100%;
+      width: 100%;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+    }
+
+    .card img {
+      width: 100%;
+      height: 280px; 
+      object-fit: cover;
+      display: block;
+      border-radius: 24px 24px 0 0;
+      transition: transform 0.5s ease, filter 0.5s ease;
+      filter: brightness(0.85);
+    }
+
+    .card:hover img {
+      transform: scale(1.08);
+      filter: brightness(1) saturate(1.25);
+    }
+
+    .card h2 {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      margin: 0;
+      padding: 15px;
+      font-size: 20px;
+      font-weight: 500;
+      color: #fff;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.85);
+      border-radius: 0 0 24px 24px;
+    }
+     :root {
   --bg: #f5f5f5;
   --text: #222;
   --muted: #666;
@@ -179,11 +236,10 @@ body {
   color: var(--muted);
   font-size: 14px;
 }
-
   </style>
 </head>
 <body>
-  <header class="nav">
+<header class="nav">
     <div class="brand">
       FAKE NEWS EXPLORER
     </div>
@@ -195,35 +251,74 @@ body {
       <a href="aboutUs.html">About us</a>
     </nav>
   </header>
-  <h1>TrustWibsite</h1>
-  <div id="sections"></div>
 
-  <script>
-    const linksList = {
-      "رياضي": ["https://www.espn.com", "https://www.skysports.com"],
-      "سياسي": ["https://www.aljazeera.net", "https://www.bbc.com/arabic"],
-      "اقتصادي": ["https://www.cnbc.com", "https://www.bloomberg.com"],
-      "تكنولوجي": ["https://www.techcrunch.com", "https://www.theverge.com"],
-      "صحي": ["https://www.webmd.com", "https://www.mayoclinic.org"],
-      "ثقافي / فني": ["https://www.imdb.com", "https://www.billboard.com"],
-      "بيئي / علمي": ["https://www.nationalgeographic.com", "https://www.sciencemag.org"],
-      "ترفيهي / مشاهير": ["https://www.tmz.com", "https://www.people.com"],
-      "تعليمي": ["https://www.edraak.org", "https://www.khanacademy.org"]
-    };
+  <h1 class="page-title">Check out trusted websites</h1>
 
-    const container = document.getElementById("sections");
+  <div class="sections">
+    <div class="card">
+      <a href="https://www.espn.com" target="_blank">
+        <img src="/public/images/pexels-pixabay-47730.jpg" alt="Sports">
+        <h2>Sports</h2>
+      </a>
+    </div>
 
-    for (let category in linksList) {
-      let html = `<div class="card"><h2>${category}</h2><ul>`;
-      for (let link of linksList[category]) {
-        html += `<li><a href="${link}" target="_blank">${link}</a></li>`;
-      }
-      html += "</ul></div>";
-      container.innerHTML += html;
-    }
-  </script>
+    <div class="card">
+      <a href="https://www.aljazeera.net" target="_blank">
+        <img src="/public/images/pexels-thgusstavo-15965251.jpg" alt="Politics">
+        <h2>Politics</h2>
+      </a>
+    </div>
 
-  <footer class="site-footer" role="contentinfo">
+    <div class="card">
+      <a href="https://www.bloomberg.com" target="_blank">
+        <img src="/public/images/pexels-jakubzerdzicki-30572289.jpg" alt="Economy">
+        <h2>Economy</h2>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://www.theverge.com" target="_blank">
+        <img src="/public/images/pexels-luis-gomes-166706-546819.jpg" alt="Technology">
+        <h2>Technology</h2>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://www.webmd.com" target="_blank">
+        <img src="/public/images/pexels-jill-wellington-1638660-257816.jpg" alt="Health">
+        <h2>Health</h2>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://www.imdb.com" target="_blank">
+        <img src="/public/images/pexels-gesel-763425.jpg" alt="Culture & Art">
+        <h2>Culture</h2>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://www.nationalgeographic.com" target="_blank">
+        <img src="/public/images/pexels-hikaique-775201.jpg" alt="Environment">
+        <h2>Environment</h2>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://www.khanacademy.org" target="_blank">
+        <img src="/public/images/pexels-freestockpro-2781814.jpg" alt="Education">
+        <h2>Education</h2>
+      </a>
+    </div>
+     <div class="card">
+      <a href="https://variety.com" target="_blank">
+        <img src="/public/images/pexels-gustavo-scafeli-1662059539-33177877.jpg" alt="Art">
+        <h2>Art</h2>
+      </a>
+    </div>
+
+  </div>
+ <footer class="site-footer" role="contentinfo">
   <div class="container">
     <div class="brand">
       <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
@@ -257,4 +352,3 @@ body {
 </footer>
 </body>
 </html>
-
