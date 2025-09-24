@@ -1,17 +1,24 @@
 async function getTextFromURL(url) {
-  const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-  const res = await fetch(proxyUrl);
-  const data = await res.json();
+  try {
+    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+    const res = await fetch(proxyUrl);
+    if (!res.ok) throw new Error("Proxy error");
 
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(data.contents, "text/html");
+    const data = await res.json();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(data.contents, "text/html");
 
-  let extractedText = "";
-  doc.querySelectorAll("h1, h2, h3, p").forEach(el => {
-    extractedText += el.textContent + "\n";
-  });
+    let extractedText = "";
+    doc.body.querySelectorAll("*").forEach(el => {
+      const text = el.textContent.trim();
+      if (text.length > 30) extractedText += text + "\n";
+    });
 
-  return extractedText;
+    return extractedText || null;
+  } catch (err) {
+    console.warn("❌ Failed to fetch URL:", err);
+    return null; 
+  }
 }
 
 async function classifyNews() {
@@ -25,15 +32,14 @@ async function classifyNews() {
   }
 
   if (input.startsWith("http://") || input.startsWith("https://")) {
-    try {
-      newsContent = await getTextFromURL(input);
-      if (!newsContent) newsContent = input; 
-    } catch (err) {
-      resultDiv.innerHTML = "<p>❌ خطأ عند جلب الرابط.</p>";
-      return;
+    const fetchedText = await getTextFromURL(input);
+    if (fetchedText && fetchedText.trim().length > 20) {
+      newsContent = fetchedText;
+    } else {
+      newsContent = input;
     }
   } else {
-    newsContent = input; 
+    newsContent = input;
   }
 
   try {
