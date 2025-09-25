@@ -533,6 +533,12 @@ body {
     © 2025 TrueScope - Fake News Explorer</div>
 </footer>
 
+  <script type="module">
+    import { app } from "/firebase-init.js";
+    // If you need services on this page later, import them here, e.g.:
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+     const db = getFirestore(app);
+  </script>
   <script src="news.js"></script>
 </body>
 </html>
