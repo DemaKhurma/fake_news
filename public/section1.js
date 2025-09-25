@@ -29,7 +29,7 @@ sectionBoxes.forEach(box => {
       singleSection.innerHTML = `
         <h1>تصنيف مجال الخبر</h1>
         <textarea id="newsText" placeholder="انسخ نص الخبر هنا"></textarea>
-        <button id="classifyBtn">تصنيف</button>
+        <button id="classifyBtn" style="background:#86B0BD">تصنيف</button>
         <div id="resultCard" class="card" style="display:none"></div>
       `;
 
