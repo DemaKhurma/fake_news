@@ -50,7 +50,7 @@ sectionBoxes.forEach(box => {
 
           const resultCard = document.getElementById("resultCard");
           resultCard.style.display = "block";
-          resultCard.textContent = `📰 مجال الخبر: ${result}`;
+          resultCard.textContent = 📰 مجال الخبر: ${result};
         } catch (err) {
           console.error(err);
           alert("🚨 حصل خطأ أثناء التصنيف!");
@@ -58,7 +58,7 @@ sectionBoxes.forEach(box => {
       });
     } else {
       // باقي الأقسام العادية
-      sectionTitle.textContent = `قسم ${sectionNumber}`;
+      sectionTitle.textContent = قسم ${sectionNumber};
       singleSection.innerHTML = `
         <h1>قسم ${sectionNumber}</h1>
         <p>هنا محتوى القسم ${sectionNumber}.</p>
