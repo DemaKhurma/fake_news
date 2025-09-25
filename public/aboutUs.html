@@ -9,12 +9,12 @@
   <style>
      .nav {
       background: var(--nav-bg);
-      color: white;
+      color: #111;
       padding: 14px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 14px #E2A16F;
     }
 
     .nav .brand {
@@ -29,7 +29,7 @@
     }
 
     .nav a {
-      color: rgba(255, 255, 255, 0.95);
+      color: #111;
       text-decoration: none;
       padding: 8px 12px;
       border-radius: 6px;
@@ -38,23 +38,24 @@
     }
 
     .nav a:hover {
-      background: rgba(255, 255, 255, 0.15);
+      background: #86B0BD;
     }
 
     :root{
-      --light-gray: #f2f2f2;
-      --mid-gray: #e0e0e0;
-      --soft-red: #b93b3b;
-      --white: #ffffff;
-      --text: #061018;
-      --muted: #6b6b6b;
+      --nav-bg: #456882;
+      --accent: #456882;
+      --muted: #456882;
+      --card-bg: #D2C1B6;
+      --container: 1100px;
+      --text: #111;
+      --muted-text: #111;
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; background:var(--light-gray);color:var(--text)}
+    html,body{height:100%;margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; background:linear-gradient(180deg, #D2C1B6 0%, #D2C1B6 100%);color:#86B0BD}
 
     .about-wrap{
-      max-width:980px;margin:40px auto;padding:28px;border-radius:18px;background:linear-gradient(180deg,var(--mid-gray) 0%, var(--light-gray) 100%);box-shadow:0 10px 30px rgba(0,0,0,0.06);
+      max-width:980px;margin:40px auto;padding:28px;border-radius:18px;background:linear-gradient(180deg,#D2C1B6 0%, #D2C1B6 100%);box-shadow:0 10px 30px #E2A16F;
     }
 
     .top{
@@ -192,7 +193,7 @@ body {
   </style>
 </head>
 <body>
- <header class="nav">
+  <header class="nav">
     <div class="brand">
       FAKE NEWS EXPLORER
     </div>
@@ -201,7 +202,7 @@ body {
       <a href="index.html">Home</a>
       <a href="sections.html">Sections</a>
       <a href="trustwebsit.html">Trustwibsite</a>
-       <a href="aboutUs.html">About us</a>
+      <a href="aboutUs.html">About us</a>
     </nav>
   </header>
   <section class="about-wrap">
