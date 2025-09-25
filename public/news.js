@@ -1,6 +1,6 @@
 async function getTextFromURL(url) {
   try {
-    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+    const proxyUrl = https://api.allorigins.win/get?url=${encodeURIComponent(url)};
     const res = await fetch(proxyUrl);
     if (!res.ok) throw new Error("Proxy error");
 
@@ -20,7 +20,7 @@ async function getTextFromURL(url) {
     return null; 
   }
 }
-
+   
 async function classifyNews() {
   const input = document.getElementById("newsInput").value.trim();
   const resultDiv = document.getElementById("result");
@@ -70,8 +70,8 @@ async function classifyNews() {
 
     const category = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "غير معروف";
 
-    resultDiv.innerHTML = `<h4> التصنيف: ${category}</h4>`;
+    resultDiv.innerHTML = <h4> التصنيف: ${category}</h4>;
   } catch (error) {
-    resultDiv.innerHTML = `<p>⚠️ حدث خطأ: ${error}</p>`;
+    resultDiv.innerHTML = <p>⚠️ حدث خطأ: ${error}</p>;
   }
 }

@@ -25,7 +25,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 } else if (result.classification === "fake") {
                     msg = "❌ الخبر مزيف";
                 } else {
-                    msg = `ℹ️ النتيجة: ${result.classification}`;
+                    msg = ℹ️ النتيجة: ${result.classification};
                 }
 
                 alert(msg); // ممكن لاحقاً نعرضها داخل div بدل alert
@@ -102,7 +102,7 @@ if (checkBtn) {
           resultCard.textContent = "❌ الخبر مزيف";
           resultCard.classList.add("error");
         } else {
-          resultCard.textContent = `ℹ️ النتيجة: ${result}`;
+          resultCard.textContent = ℹ️ النتيجة: ${result};
         }
       }
     } catch (err) {
