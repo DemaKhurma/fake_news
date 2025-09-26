@@ -9,16 +9,10 @@
   <style>
     :root {
       --nav-bg: #708993;
-      --accent:#86B0BD;
-      --muted: #555;
+      --accent: #708993;
+      --muted: #708993;
       --card-bg: #E9E9E9;
       --container: 1100px;
-      --bg: #E9E9E9;
-       --text: #111;  
-       --link: #0077cc;
-        --container-width: 1100px;
-         --gap: 32px;
-          font-family: 'Tajawal', Arial, sans-serif;
     }
 
     * {
@@ -28,12 +22,10 @@
     body {
       margin: 0;
       font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-     
+      background: linear-gradient(180deg, #86B0BD 0%, #86B0BD 100%);
+      color: #86B0BD;
       direction: ltr;
       text-align: left;
-       background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
     }
 
     .nav {
@@ -67,9 +59,8 @@
     }
 
     .nav a:hover {
-      background: #708993;
+      background: #c1ced4;
     }
-
     .hero {
       max-width: var(--container);
       margin: 40px auto;
@@ -122,7 +113,7 @@
       transition: 0.2s;
     }
 
-    .search-row button:hover {/*nnn*/
+    .search-row button:hover {
       background: #DCDCDC;
     }
 
@@ -227,8 +218,24 @@
         order: -1;
       }
     }
+    :root {
+  --bg: #E9E9E9;
+  --text: #111;
+  --muted: #111;
+  --accent: #111;
+  --link: #0077cc;
+  --container-width: 1100px;
+  --gap: 32px;
+  font-family: 'Tajawal', Arial, sans-serif;
+}
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
 
 .site-footer {
   background: var(--bg);
@@ -406,7 +413,7 @@
         const result = match[1];
         const confidence = match[2];
 
-        resultDiv.innerHTML = `<div class="card">💡 الخبر: ${result} <br>🔢 نسبة الثقة: ${confidence}%</div>`;
+        resultDiv.innerHTML = `<div class="card">💡 الخبر: ${result} <br/>🔢 نسبة الثقة: ${confidence}%</div>`;
 
         if (result === "كاذب") {
           resultDiv.innerHTML += `<div class="card">🔎 جاري توليد أخبار بديلة صحيحة...</div>`;
@@ -471,4 +478,3 @@
   <script src="news.js"></script>
 </body>
 </html>
-
