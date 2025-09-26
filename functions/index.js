@@ -1,9 +1,13 @@
 const functions = require("firebase-functions");
 const axios = require("axios");
+const admin = require("firebase-admin");
 
-// قراءة القيم من Firebase Functions Config
-const GEMINI_API_KEY = functions.config().gemini.key;
-const MODEL_NAME = functions.config().gemini.model || "gemini-1.5-pro";
+// تهيئة Firebase Admin
+admin.initializeApp();
+
+// قراءة القيم من Firebase Functions Config أو Environment Variables
+const GEMINI_API_KEY = functions.config().gemini?.key || process.env.GEMINI_API_KEY || "AIzaSyA2eov2yTsbAaA8LNaN8hvtmmFAcLgcARo";
+const MODEL_NAME = functions.config().gemini?.model || process.env.GEMINI_MODEL || "gemini-1.5-pro";
 
 // دالة اختبار بسيطة
 exports.helloWorld = functions.https.onRequest((req, res) => {
@@ -85,10 +89,80 @@ Return JSON with keys:
       };
     }
 
+    // حفظ النتيجة في Firestore
+    try {
+      const db = admin.firestore();
+      const analysisData = {
+        text: text.substring(0, 1000), // حفظ أول 1000 حرف فقط
+        link: link || null,
+        classification: parsed.classification,
+        trust_score: parsed.trust_score,
+        classification_reason: parsed.classification_reason,
+        alternative_sources: parsed.alternative_sources || [],
+        fact_check: parsed.fact_check || [],
+        timestamp: admin.firestore.FieldValue.serverTimestamp(),
+        user_id: context.auth?.uid || null,
+        ip_address: context.rawRequest?.ip || null
+      };
+
+      await db.collection('news_analyses').add(analysisData);
+      console.log("✅ Analysis saved to Firestore");
+    } catch (saveError) {
+      console.error("⚠️ Failed to save analysis:", saveError);
+      // لا نرمي خطأ هنا لأن التحليل نجح
+    }
+
     return parsed;
 
   } catch (err) {
     console.error("❌ analyzeNews error:", (err?.response?.data )|| err.message || err);
+    throw new functions.https.HttpsError("internal", "Internal Server Error");
+  }
+});
+
+// دالة لجلب إحصائيات التحليلات
+exports.getAnalytics = functions.https.onCall(async (data, context) => {
+  try {
+    const db = admin.firestore();
+    
+    // جلب آخر 100 تحليل
+    const recentAnalyses = await db.collection('news_analyses')
+      .orderBy('timestamp', 'desc')
+      .limit(100)
+      .get();
+
+    const analyses = [];
+    let totalAnalyses = 0;
+    let fakeCount = 0;
+    let trueCount = 0;
+    let totalTrustScore = 0;
+
+    recentAnalyses.forEach(doc => {
+      const data = doc.data();
+      analyses.push({
+        id: doc.id,
+        ...data,
+        timestamp: data.timestamp?.toDate() || null
+      });
+      
+      totalAnalyses++;
+      if (data.classification === 'fake') fakeCount++;
+      if (data.classification === 'true') trueCount++;
+      if (data.trust_score) totalTrustScore += data.trust_score;
+    });
+
+    const averageTrustScore = totalAnalyses > 0 ? Math.round(totalTrustScore / totalAnalyses) : 0;
+
+    return {
+      totalAnalyses,
+      fakeCount,
+      trueCount,
+      averageTrustScore,
+      recentAnalyses: analyses.slice(0, 10) // آخر 10 تحليلات فقط
+    };
+
+  } catch (err) {
+    console.error("❌ getAnalytics error:", err);
     throw new functions.https.HttpsError("internal", "Internal Server Error");
   }
 });

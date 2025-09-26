@@ -12,5 +12,23 @@ service cloud.firestore {
       allow read: if true;
       allow write: if request.auth != null;
     }
+
+    // تحليلات الأخبار - القراءة للجميع، الكتابة فقط من Firebase Functions
+    match /news_analyses/{analysisId} {
+      allow read: if true;
+      allow write: if false; // فقط Firebase Functions يمكنها الكتابة
+    }
+
+    // الإحصائيات العامة - القراءة للجميع
+    match /analytics/{document=**} {
+      allow read: if true;
+      allow write: if false; // فقط Firebase Functions يمكنها الكتابة
+    }
+
+    // المواقع الموثوقة - القراءة للجميع، الكتابة للمسجلين فقط
+    match /trusted_sites/{siteId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
   }
 }
