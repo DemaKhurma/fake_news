@@ -16,46 +16,46 @@
 ### 1. إعداد البيئة
 
 ```bash
-# تثبيت Firebase CLI (إذا لم يكن مثبتاً)
+
 npm install -g firebase-tools
 
-# تسجيل الدخول
+
 firebase login
 
-# التحقق من المشاريع المتاحة
+
 firebase projects:list
 ```
 
 ### 2. إعداد المشروع
 
 ```bash
-# الانتقال لمجلد المشروع
+
 cd fake_news
 
-# ربط المشروع بـ Firebase
+
 firebase use fake-new-explorerr
 
-# التحقق من الإعدادات
+
 firebase projects:list
 ```
 
 ### 3. إعداد Gemini API
 
 ```bash
-# إضافة مفتاح Gemini API
+
 firebase functions:config:set gemini.key="AIzaSyA2eov2yTsbAaA8LNaN8hvtmmFAcLgcARo"
 
-# التحقق من الإعدادات
+
 firebase functions:config:get
 ```
 
 ### 4. تثبيت التبعيات
 
 ```bash
-# تثبيت تبعيات المشروع الرئيسي
+
 npm install
 
-# تثبيت تبعيات Functions
+
 cd functions
 npm install
 cd ..
@@ -64,7 +64,7 @@ cd ..
 ### 5. اختبار محلي
 
 ```bash
-# تشغيل المحاكي المحلي
+
 firebase emulators:start
 
 # اختبار الموقع
@@ -80,13 +80,13 @@ firebase deploy
 
 #### النشر التدريجي
 ```bash
-# نشر Functions أولاً
+
 firebase deploy --only functions
 
-# نشر Firestore Rules
+
 firebase deploy --only firestore
 
-# نشر Hosting
+
 firebase deploy --only hosting
 ```
 
@@ -110,38 +110,37 @@ firebase deploy --only hosting
 
 #### 1. خطأ في Gemini API
 ```bash
-# التحقق من المفتاح
+
 firebase functions:config:get gemini
 
-# إعادة تعيين المفتاح
+
 firebase functions:config:set gemini.key="NEW_KEY"
 firebase deploy --only functions
 ```
 
 #### 2. خطأ في Firestore Rules
 ```bash
-# اختبار القواعد محلياً
+
 firebase emulators:start --only firestore
 
-# إعادة نشر القواعد
 firebase deploy --only firestore:rules
 ```
 
 #### 3. خطأ في Hosting
 ```bash
-# مسح الكاش
+
 firebase hosting:channel:delete preview
 
-# إعادة النشر
+
 firebase deploy --only hosting
 ```
 
 #### 4. خطأ في Functions
 ```bash
-# عرض السجلات
+
 firebase functions:log
 
-# إعادة نشر Functions
+
 firebase deploy --only functions
 ```
 
