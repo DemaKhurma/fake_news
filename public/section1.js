@@ -10,7 +10,7 @@ navLinks.forEach(link => {
   });
 });
 
-// التحكم في الأقسام
+
 const sectionBoxes = document.querySelectorAll(".section-box");
 const sectionTitle = document.getElementById("sectionTitle");
 const singleSection = document.getElementById("single-section");
@@ -44,9 +44,8 @@ sectionBoxes.forEach(box => {
         }
 
         try {
-          // هنا تستدعي Firebase Function checkNews أو API خاصتك
-          // في هذا المثال بنحاكي النتيجة
-          const result = "اقتصاد"; // القيمة سترجع من السيرفر
+          
+          const result = "اقتصاد"; 
 
           const resultCard = document.getElementById("resultCard");
           resultCard.style.display = "block";
@@ -57,7 +56,7 @@ sectionBoxes.forEach(box => {
         }
       });
     } else {
-      // باقي الأقسام العادية
+    
       sectionTitle.textContent = `قسم ${sectionNumber}`;
       singleSection.innerHTML = `
         <h1>قسم ${sectionNumber}</h1>

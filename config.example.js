@@ -1,5 +1,4 @@
-// مثال على إعدادات المشروع
-// انسخ هذا الملف إلى config.js واملأ القيم الصحيحة
+
 
 export const firebaseConfig = {
   apiKey: "YOUR_FIREBASE_API_KEY_HERE",
