@@ -3,7 +3,7 @@
 <head>
   <link rel="icon" type="image/png" href="/public/images/logo-32.png">
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fake News Explorer-About Section</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -81,12 +81,32 @@
     .name{margin-top:12px;font-weight:600;color:var(--text);font-size:15px}
     .role{display:block;margin-top:6px;font-size:13px;color:var(--muted)}
 
-    @media (max-width:520px){
-      h1{font-size:32px}
-      .lnk-btn{width:92px;height:92px}
-      .profile{width:92px}
+    /* شاشات الموبايل */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        padding: 10px;
+      }
+      .text {
+        font-size: 14px;
+      }
     }
-    
+
+    /* التابلت */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .container {
+        flex-direction: row;
+      }
+    }
+
+    /* اللابتوب والشاشات الكبيرة */
+    @media (min-width: 1025px) {
+      .container {
+        flex-direction: row;
+        max-width: 1200px;
+        margin: auto;
+      }
+    }
     :root {
   --nav-bg: #708993;
   --bg: #E9E9E9;
@@ -118,12 +138,14 @@ body {
   max-width: var(--container-width);
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   gap: var(--gap);
   flex-wrap: wrap;
 }
-
+.item {
+  flex: 1 1 300px;
+}
 .brand {
   display: flex;
   align-items: center;

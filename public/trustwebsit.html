@@ -4,6 +4,7 @@
   <link rel="icon" type="image/png" href="/public/images/logo-32.png">
   <meta charset="UTF-8">
   <title>Fake News Explorer-TrustedWebsites Section</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -170,12 +171,14 @@ body {
   max-width: var(--container-width);
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   gap: var(--gap);
   flex-wrap: wrap;
 }
-
+.item {
+  flex: 1 1 300px;
+}
 .brand {
   display: flex;
   align-items: center;
@@ -240,6 +243,32 @@ body {
 }
 .nav a:hover {
       background: #c1ced4;
+    }
+ /* شاشات الموبايل */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        padding: 10px;
+      }
+      .text {
+        font-size: 14px;
+      }
+    }
+
+    /* التابلت */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .container {
+        flex-direction: row;
+      }
+    }
+
+    /* اللابتوب والشاشات الكبيرة */
+    @media (min-width: 1025px) {
+      .container {
+        flex-direction: row;
+        max-width: 1200px;
+        margin: auto;
+      }
     }
   </style>
 </head>
