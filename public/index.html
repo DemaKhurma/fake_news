@@ -3,7 +3,7 @@
 <head>
 <link rel="icon" type="image/png" href="/public/images/logo-32.png">
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fake News Explorer-Home Section</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
@@ -76,8 +76,13 @@
       font-size: 42px;
       font-weight: 800;
       color: #86B0BD;
+ opacity: 0;
+  animation: fade 6s ease-in-out infinite;
     }
-
+@keyframes fade {
+  60% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
     .subtitle {
       margin: 0 0 18px 0;
       color: var(--muted);
@@ -130,8 +135,12 @@
       margin: 0 0 8px 0;
       font-size: 18px;
       color: #86B0BD;
+        animation: flash 1.5s infinite alternate;
     }
-
+@keyframes flash {
+  from { opacity: 0.3;}
+  to { opacity: 1;}
+}
     .how p {
       margin: 0;
       color: var(--muted);
@@ -208,14 +217,30 @@
       margin-top: 20px;
     }
 
-    @media (max-width: 980px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding: 20px;
+   /* شاشات الموبايل */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        padding: 10px;
       }
+      .text {
+        font-size: 14px;
+      }
+    }
 
-      .monitor-card {
-        order: -1;
+    /* التابلت */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .container {
+        flex-direction: row;
+      }
+    }
+
+    /* اللابتوب والشاشات الكبيرة */
+    @media (min-width: 1025px) {
+      .container {
+        flex-direction: row;
+        max-width: 1200px;
+        margin: auto;
       }
     }
     :root {
@@ -232,7 +257,10 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background: var(--bg);
+margin: 0;
+  height: 100vh; 
+  background: url("/public/images/Gemini_Generated_Image_7cuhd67cuhd67cuh.png") no-repeat center center fixed;
+  background-size: cover;
   color: var(--text);
   line-height: 1.6;
 }
@@ -245,16 +273,19 @@ body {
   box-shadow: 0 6px 20px #e2a16f;
 }
 
+
 .container {
   max-width: var(--container-width);
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   gap: var(--gap);
   flex-wrap: wrap;
 }
-
+.item {
+  flex: 1 1 300px;
+}
 .brand {
   display: flex;
   align-items: center;
@@ -320,6 +351,7 @@ body {
 .nav a:hover {
       background: #c1ced4;
     }
+
   </style>
 </head>
 <body>

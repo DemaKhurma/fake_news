@@ -3,7 +3,7 @@
 <head>
   <link rel="icon" type="image/png" href="/public/images/logo-32.png">
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fake News Explorer-About Section</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -74,19 +74,39 @@
       width:120px;height:120px;border-radius:999px;display:grid;place-items:center;background:linear-gradient(135deg, var(--white), #f9f9f9);box-shadow: 0 10px 30px rgba(185,59,59,0.08), inset 0 -6px 18px rgba(0,0,0,0.03);position:relative;transition:transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s;
       border: 1px solid #86B0BD;
     }
-    .lnk-btn svg{width:48px;height:48px;filter:drop-shadow(0 6px 18px rgba(185,59,59,0.12));}
+    .lnk-btn svg{width:48px;height:48px;filter:drop-shadow(0 6px 18px #e2a16f);}
 
     .lnk-btn:hover{transform:translateY(-8px) scale(1.03);box-shadow:0 18px 40px rgba(185,59,59,0.16), 0 6px 18px rgba(0,0,0,0.06)}
 
     .name{margin-top:12px;font-weight:600;color:var(--text);font-size:15px}
     .role{display:block;margin-top:6px;font-size:13px;color:var(--muted)}
 
-    @media (max-width:520px){
-      h1{font-size:32px}
-      .lnk-btn{width:92px;height:92px}
-      .profile{width:92px}
+    /* شاشات الموبايل */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        padding: 10px;
+      }
+      .text {
+        font-size: 14px;
+      }
     }
-    
+
+    /* التابلت */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .container {
+        flex-direction: row;
+      }
+    }
+
+    /* اللابتوب والشاشات الكبيرة */
+    @media (min-width: 1025px) {
+      .container {
+        flex-direction: row;
+        max-width: 1200px;
+        margin: auto;
+      }
+    }
     :root {
   --nav-bg: #708993;
   --bg: #E9E9E9;
@@ -118,7 +138,7 @@ body {
   max-width: var(--container-width);
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   gap: var(--gap);
   flex-wrap: wrap;
@@ -232,7 +252,7 @@ body {
             <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="var(--soft-red)" d="M100.28 448H7.4V148.9h92.88zm-46.44-340.9C24.22 107.1 0 82.8 0 52.7 0 23.4 24.65 0 55.37 0s55.37 23.4 55.37 52.7c0 30.1-24.22 54.4-55.37 54.4zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.25-79.2-48.3 0-55.7 37.8-55.7 76.8V448H158.2V148.9h89.1v40.8h1.3c12.4-23.5 42.6-48.2 87.6-48.2 93.8 0 111.1 61.8 111.1 142.3V448z"/></svg>
           </a>
           <span class="name">Reem Abdalghani</span>
-          <span class="role">Front-end developer</span>
+          <span class="role">Back-end developer</span>
         </div>
 
         <div class="profile">
