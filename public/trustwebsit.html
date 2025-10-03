@@ -77,8 +77,14 @@
       margin: 40px 0 25px 0;
       letter-spacing: 1px;
       text-shadow: 1px 1px 6px #86B0BD;
+     font-family: Impact;
+      animation: pulse 2s infinite;
     }
-
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
     .sections {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
