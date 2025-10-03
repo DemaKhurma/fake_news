@@ -1,30 +1,33 @@
-const functions = require("firebase-functions");
+const {onRequest, onCall} = require("firebase-functions/v2/https");
+const {setGlobalOptions} = require("firebase-functions/v2/options");
 const axios = require("axios");
-const admin = require("firebase-admin");
+const {initializeApp} = require("firebase-admin/app");
+const {getFirestore, FieldValue} = require("firebase-admin/firestore");
 
+// Global options (adjust region if needed)
+setGlobalOptions({region: "us-central1", timeoutSeconds: 60, memory: "256MiB"});
 
-admin.initializeApp();
+initializeApp();
 
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
+const MODEL_NAME = process.env.GEMINI_MODEL || "gemini-1.5-pro";
 
-const GEMINI_API_KEY = functions.config().gemini?.key || process.env.GEMINI_API_KEY || "AIzaSyA2eov2yTsbAaA8LNaN8hvtmmFAcLgcARo";
-const MODEL_NAME = functions.config().gemini?.model || process.env.GEMINI_MODEL || "gemini-1.5-pro";
-
-exports.helloWorld = functions.https.onRequest((req, res) => {
+exports.helloWorld = onRequest((req, res) => {
   res.send("Hello from Firebase!");
 });
 
 
-exports.analyzeNews = functions.https.onCall(async (data, context) => {
+exports.analyzeNews = onCall(async (request) => {
   try {
-    const { text, link, lang } = data;
+    const { text, link, lang } = request.data || {};
 
     if (!text || typeof text !== "string") {
-      throw new functions.https.HttpsError("invalid-argument", "Missing or invalid text");
+      throw new Error("invalid-argument: Missing or invalid text");
     }
 
     if (!GEMINI_API_KEY) {
       console.error("❌ GEMINI_API_KEY not configured");
-      throw new functions.https.HttpsError("failed-precondition", "Server misconfigured");
+      throw new Error("failed-precondition: Server misconfigured");
     }
 
     const prompt = `
@@ -43,14 +46,13 @@ Return JSON with keys:
 `;
 
    
-    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(MODEL_NAME)}:generateContent`;
+    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(MODEL_NAME)}:generateContent?key=${encodeURIComponent(GEMINI_API_KEY)}`;
 
     const r = await axios.post(endpoint, {
       contents: [{ role: "user", parts: [{ text: prompt }] }]
     }, {
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${GEMINI_API_KEY}`
+        "Content-Type": "application/json"
       },
       timeout: 60000
     });
@@ -89,7 +91,7 @@ Return JSON with keys:
 
     
     try {
-      const db = admin.firestore();
+      const db = getFirestore();
       const analysisData = {
         text: text.substring(0, 1000), // حفظ أول 1000 حرف فقط
         link: link || null,
@@ -98,9 +100,9 @@ Return JSON with keys:
         classification_reason: parsed.classification_reason,
         alternative_sources: parsed.alternative_sources || [],
         fact_check: parsed.fact_check || [],
-        timestamp: admin.firestore.FieldValue.serverTimestamp(),
-        user_id: context.auth?.uid || null,
-        ip_address: context.rawRequest?.ip || null
+        timestamp: FieldValue.serverTimestamp(),
+        user_id: request.auth?.uid || null,
+        ip_address: request.rawRequest?.ip || null
       };
 
       await db.collection('news_analyses').add(analysisData);
@@ -114,14 +116,14 @@ Return JSON with keys:
 
   } catch (err) {
     console.error("❌ analyzeNews error:", (err?.response?.data )|| err.message || err);
-    throw new functions.https.HttpsError("internal", "Internal Server Error");
+    throw new Error("internal: Internal Server Error");
   }
 });
 
 
-exports.getAnalytics = functions.https.onCall(async (data, context) => {
+exports.getAnalytics = onCall(async (request) => {
   try {
-    const db = admin.firestore();
+    const db = getFirestore();
     
     
     const recentAnalyses = await db.collection('news_analyses')
@@ -161,6 +163,6 @@ exports.getAnalytics = functions.https.onCall(async (data, context) => {
 
   } catch (err) {
     console.error("❌ getAnalytics error:", err);
-    throw new functions.https.HttpsError("internal", "Internal Server Error");
+    throw new Error("internal: Internal Server Error");
   }
 });

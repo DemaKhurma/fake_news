@@ -373,7 +373,6 @@ body {
         <p>Enter a news story into the search bar above to check if it's fake or real.</p>
       </div>
 
-      <div id="result"></div>
     </section>
 
     <aside class="monitor-card">
@@ -388,7 +387,7 @@ body {
   <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js';
-    import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.4/firebase-functions.js';
+    import { getFunctions, httpsCallable, connectFunctionsEmulator } from 'https://www.gstatic.com/firebasejs/10.12.4/firebase-functions.js';
 
     // Firebase configuration
     const firebaseConfig = {
@@ -404,16 +403,39 @@ body {
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const functions = getFunctions(app);
+    if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+      try { connectFunctionsEmulator(functions, '127.0.0.1', 5001); } catch (e) { console.warn('Emulator connect failed:', e); }
+    }
 
     // Firebase Functions
     const analyzeNews = httpsCallable(functions, 'analyzeNews');
 
+    async function getTextFromURL(url) {
+      try {
+        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+        const res = await fetch(proxyUrl);
+        if (!res.ok) throw new Error('Proxy error');
+        const data = await res.json();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data.contents, 'text/html');
+        let extracted = '';
+        doc.body.querySelectorAll('*').forEach(el => {
+          const t = el.textContent.trim();
+          if (t.length > 30) extracted += t + '\n';
+        });
+        return extracted || null;
+      } catch (e) {
+        console.warn('Failed to fetch URL:', e);
+        return null;
+      }
+    }
+
     // Global functions
     window.checkNews = async function() {
-      const news = document.getElementById("newsInput").value;
+      const input = document.getElementById('newsInput').value.trim();
       const resultDiv = document.getElementById("result");
 
-      if (!news.trim()) {
+      if (!input) {
         resultDiv.innerHTML = "<div class='card'>⚠ الرجاء إدخال نص للتحقق.</div>";
         return;
       }
@@ -421,10 +443,20 @@ body {
       resultDiv.innerHTML = "<div class='card'>⏳ جاري التحقق من الخبر...</div>";
 
       try {
-        const result = await analyzeNews({ 
-          text: news, 
-          link: "", 
-          lang: "ar" 
+        let textToAnalyze = input;
+        let link = '';
+        if (input.startsWith('http://') || input.startsWith('https://')) {
+          link = input;
+          const fetched = await getTextFromURL(input);
+          if (fetched && fetched.trim().length > 50) {
+            textToAnalyze = fetched;
+          }
+        }
+
+        const result = await analyzeNews({
+          text: textToAnalyze,
+          link,
+          lang: 'ar'
         });
 
         const data = result.data;
