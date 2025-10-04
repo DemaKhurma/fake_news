@@ -71,6 +71,82 @@
       align-items: flex-start;
     }
 
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 20px;
+      }
+      
+      .monitor-card {
+        order: -1;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 16px;
+        margin: 20px auto;
+      }
+      
+      .hero-left h1 {
+        font-size: 32px;
+      }
+      
+      .search-row {
+        flex-direction: column;
+        gap: 8px;
+      }
+      
+      .search-row input[type="text"] {
+        width: 100%;
+      }
+      
+      .search-row button {
+        width: 100%;
+        padding: 12px 16px;
+      }
+      
+      .monitor-card .screen {
+        width: 280px;
+        height: 180px;
+      }
+      
+      .nav {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+      }
+      
+      .nav .links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-left h1 {
+        font-size: 24px;
+      }
+      
+      .monitor-card .screen {
+        width: 240px;
+        height: 160px;
+      }
+      
+      .nav .brand {
+        font-size: 14px;
+      }
+      
+      .nav a {
+        padding: 6px 10px;
+        font-size: 14px;
+      }
+    }
+
     .hero-left h1 {
       margin: 0 0 12px 0;
       font-size: 42px;
@@ -202,6 +278,18 @@
       padding: 16px;
       margin-top: 12px;
       box-shadow: 0 4px 12px #e2a16f;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .card h4 {
+      margin: 0 0 12px 0;
+      color: var(--accent);
+      font-size: 16px;
+    }
+
+    .card strong {
+      color: var(--accent);
     }
 
     .card a {
@@ -217,32 +305,6 @@
       margin-top: 20px;
     }
 
-   /* شاشات الموبايل */
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-        padding: 10px;
-      }
-      .text {
-        font-size: 14px;
-      }
-    }
-
-    /* التابلت */
-    @media (min-width: 769px) and (max-width: 1024px) {
-      .container {
-        flex-direction: row;
-      }
-    }
-
-    /* اللابتوب والشاشات الكبيرة */
-    @media (min-width: 1025px) {
-      .container {
-        flex-direction: row;
-        max-width: 1200px;
-        margin: auto;
-      }
-    }
     :root {
   --bg: #E9E9E9;
   --text: #111;
@@ -348,6 +410,32 @@ margin: 0;
   color: var(--muted);
   font-size: 14px;
 }
+
+    /* Responsive Footer */
+    @media (max-width: 768px) {
+      .site-footer {
+        padding: 20px 16px;
+      }
+      
+      .container {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+      
+      .brand {
+        justify-content: center;
+        min-width: auto;
+      }
+      
+      .footer-col {
+        min-width: auto;
+      }
+      
+      .contact {
+        align-items: center;
+      }
+    }
 .nav a:hover {
       background: #c1ced4;
     }
@@ -475,8 +563,25 @@ margin: 0;
 
         const data = result.data;
         const classification = data.classification;
+        const category = data.category;
         const trustScore = data.trust_score;
         const reason = data.classification_reason;
+
+        // ترجمة التصنيفات
+        const categoryTranslations = {
+          'political': 'سياسي',
+          'sports': 'رياضي',
+          'health': 'صحي',
+          'technology': 'تكنولوجي',
+          'economy': 'اقتصادي',
+          'entertainment': 'ترفيهي',
+          'science': 'علمي',
+          'education': 'تعليمي',
+          'environment': 'بيئي',
+          'international': 'دولي',
+          'local': 'محلي',
+          'other': 'أخرى'
+        };
 
         let resultHtml = `<div class="card">`;
         
@@ -488,8 +593,9 @@ margin: 0;
           resultHtml += `⚠️ <strong>غير محدد</strong><br/>`;
         }
         
-        resultHtml += `🔢 نسبة الثقة: ${trustScore}%<br/>`;
-        resultHtml += `📝 السبب: ${reason}</div>`;
+        resultHtml += `🏷️ <strong>التصنيف:</strong> ${categoryTranslations[category] || category}<br/>`;
+        resultHtml += `🔢 <strong>نسبة الثقة:</strong> ${trustScore}%<br/>`;
+        resultHtml += `📝 <strong>السبب:</strong> ${reason}</div>`;
 
         // إضافة المصادر البديلة إذا كانت متوفرة
         if (data.alternative_sources && data.alternative_sources.length > 0) {
@@ -527,7 +633,65 @@ margin: 0;
       }
     };
 
-    window.classifyNews = window.checkNews; // نفس الوظيفة
+    window.classifyNews = async function() {
+      const input = document.getElementById('newsInput').value.trim();
+      const resultDiv = document.getElementById("result");
+
+      if (!input) {
+        resultDiv.innerHTML = "<div class='card'>⚠ الرجاء إدخال نص للتصنيف.</div>";
+        return;
+      }
+
+      resultDiv.innerHTML = "<div class='card'>⏳ جاري تصنيف نوع الخبر...</div>";
+
+      try {
+        let textToAnalyze = input;
+        let link = '';
+        if (input.startsWith('http://') || input.startsWith('https://')) {
+          link = input;
+          const fetched = await getTextFromURL(input);
+          if (fetched && fetched.trim().length > 50) {
+            textToAnalyze = fetched;
+          }
+        }
+
+        const result = await analyzeNews({
+          text: textToAnalyze,
+          link,
+          lang: 'ar'
+        });
+
+        const data = result.data;
+        const category = data.category;
+
+        // ترجمة التصنيفات
+        const categoryTranslations = {
+          'political': 'سياسي',
+          'sports': 'رياضي',
+          'health': 'صحي',
+          'technology': 'تكنولوجي',
+          'economy': 'اقتصادي',
+          'entertainment': 'ترفيهي',
+          'science': 'علمي',
+          'education': 'تعليمي',
+          'environment': 'بيئي',
+          'international': 'دولي',
+          'local': 'محلي',
+          'other': 'أخرى'
+        };
+
+        const categoryName = categoryTranslations[category] || category;
+        
+        let resultHtml = `<div class="card">`;
+        resultHtml += `🏷️ <strong>نوع الخبر:</strong> ${categoryName}</div>`;
+
+        resultDiv.innerHTML = resultHtml;
+
+      } catch (error) {
+        console.error("Error:", error);
+        resultDiv.innerHTML = "<div class='card'>❌ حدث خطأ أثناء تصنيف الخبر. تأكد من اتصالك بالإنترنت.</div>";
+      }
+    };
   </script>
 
   <footer class="site-footer" role="contentinfo">
