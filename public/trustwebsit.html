@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <link rel="icon" type="image/png" href="/public/images/logo-32.png">
+  <link rel="icon" type="image/png" href="/images/logo-32.png">
   <meta charset="UTF-8">
   <title>Fake News Explorer-TrustedWebsites Section</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,6 +47,7 @@
       display: flex;
       gap: 18px;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .nav a {
@@ -56,10 +57,20 @@
       border-radius: 6px;
       font-weight: 600;
       transition: 0.2s;
+      display: inline-block;
     }
 
     .nav a:hover {
       background: #c1ced4;
+    }
+
+    /* Responsive navbar */
+    @media (max-width: 768px) {
+      .nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .nav .links { justify-content: center; }
     }
 
     body {
@@ -87,7 +98,7 @@
 }
     .sections {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 35px;
       padding: 40px;
       max-width: 1250px;
@@ -97,7 +108,7 @@
     /* Responsive Design */
     @media (max-width: 1024px) {
       .sections {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 25px;
         padding: 30px 20px;
       }
@@ -110,7 +121,7 @@
 
     @media (max-width: 768px) {
       .sections {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 20px;
         padding: 20px 15px;
       }
@@ -130,9 +141,9 @@
       }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       .sections {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         gap: 15px;
         padding: 15px 10px;
       }
@@ -355,62 +366,62 @@ body {
   <div class="sections">
     <div class="card">
       <a href="https://www.espn.com" target="_blank">
-        <img src="./images/pexels-pixabay-47730.jpg" alt="Sports">
+        <img src="images/pexels-pixabay-47730.jpg" alt="Sports">
         <h2>Sports</h2>
       </a>
     </div>
 
     <div class="card">
       <a href="https://www.aljazeera.net" target="_blank">
-        <img src="./images/pexels-thgusstavo-15965251.jpg" alt="Politics">
+        <img src="images/pexels-thgusstavo-15965251.jpg" alt="Politics">
         <h2>Politics</h2>
       </a>
     </div>
 
     <div class="card">
       <a href="https://www.bloomberg.com" target="_blank">
-        <img src="./images/pexels-jakubzerdzicki-30572289.jpg" alt="Economy">
+        <img src="images/pexels-jakubzerdzicki-30572289.jpg" alt="Economy">
         <h2>Economy</h2>
       </a>
     </div>
 
     <div class="card">
       <a href="https://www.theverge.com" target="_blank">
-        <img src="./images/pexels-luis-gomes-166706-546819.jpg" alt="Technology">
+        <img src="images/pexels-luis-gomes-166706-546819.jpg" alt="Technology">
         <h2>Technology</h2>
       </a>
     </div>
 
     <div class="card">
       <a href="https://www.webmd.com" target="_blank">
-        <img src="./images/pexels-jill-wellington-1638660-257816.jpg" alt="Health">
+        <img src="images/pexels-jill-wellington-1638660-257816.jpg" alt="Health">
         <h2>Health</h2>
       </a>
     </div>
 
     <div class="card">
       <a href="https://www.imdb.com" target="_blank">
-        <img src="./images/pexels-gesel-763425.jpg" alt="Culture & Art">
+        <img src="images/pexels-gesel-763425.jpg" alt="Culture & Art">
         <h2>Culture</h2>
       </a>
     </div>
 
     <div class="card">
       <a href="https://www.nationalgeographic.com" target="_blank">
-        <img src="./images/pexels-hikaique-775201.jpg" alt="Environment">
+        <img src="images/pexels-hikaique-775201.jpg" alt="Environment">
         <h2>Environment</h2>
       </a>
     </div>
 
     <div class="card">
       <a href="https://www.khanacademy.org" target="_blank">
-        <img src="./images/pexels-freestockpro-2781814.jpg" alt="Education">
+        <img src="images/pexels-freestockpro-2781814.jpg" alt="Education">
         <h2>Education</h2>
       </a>
     </div>
      <div class="card">
       <a href="https://variety.com" target="_blank">
-        <img src="./images/pexels-gustavo-scafeli-1662059539-33177877.jpg" alt="Art">
+        <img src="images/pexels-gustavo-scafeli-1662059539-33177877.jpg" alt="Art">
         <h2>Art</h2>
       </a>
     </div>
