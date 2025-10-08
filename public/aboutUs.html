@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/png" href="/public/images/logo-32.png">
+  <link rel="icon" type="image/png" href="/images/logo-32.png">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fake News Explorer-About Section</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-     .nav {
+    .nav {
       background: var(--nav-bg);
       color: #111;
       padding: 14px 24px;
@@ -26,6 +26,7 @@
       display: flex;
       gap: 18px;
       align-items: center;
+      flex-wrap: wrap;
     }
     .nav a {
       color: #111;
@@ -34,10 +35,20 @@
       border-radius: 6px;
       font-weight: 600;
       transition: 0.2s;
+      display: inline-block;
     }
 
     .nav a:hover {
       background: #c1ced4;
+    }
+
+    /* Responsive navbar */
+    @media (max-width: 768px) {
+      .nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .nav .links { justify-content: center; }
     }
 
     :root{
@@ -362,7 +373,7 @@ body {
         </div>
 
         <div class="profile">
-          <a class="lnk-btn" href="https://www.linkedin.com/in/dana-a-ahmad-0b5431359?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BgKnNvTT3QZ2vvKBGIC5iSg%3D%3D" target="_blank" rel="noopener noreferrer">
+          <a class="lnk-btn" href="https://www.linkedin.com/in/dana-alhajeid-0b5431359" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="var(--soft-red)" d="M100.28 448H7.4V148.9h92.88zm-46.44-340.9C24.22 107.1 0 82.8 0 52.7 0 23.4 24.65 0 55.37 0s55.37 23.4 55.37 52.7c0 30.1-24.22 54.4-55.37 54.4zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.25-79.2-48.3 0-55.7 37.8-55.7 76.8V448H158.2V148.9h89.1v40.8h1.3c12.4-23.5 42.6-48.2 87.6-48.2 93.8 0 111.1 61.8 111.1 142.3V448z"/></svg>
           </a>
           <span class="name">Dana<br> Alhajeid</span>
